@@ -1,12 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
-    Welcome to {{ title }}!
+    <a routerLink="/">{{ title }}</a>
   </h1>
 </div>
-<h2>Charts:</h2>
-<ul>
-  <li>
-    <h2><a [routerLink]="'/donut'">Donut Chart</a></h2>
-  </li>
-</ul>
+<router-outlet></router-outlet>

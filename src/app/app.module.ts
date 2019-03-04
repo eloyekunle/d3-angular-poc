@@ -4,17 +4,19 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { DonutComponent } from './donut/donut.component';
 import { RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DonutComponent
+    DonutComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
       {path: 'donut', component: DonutComponent},
-      {path: '', component: AppComponent},
+      {path: '', component: HomeComponent},
     ])
   ],
   providers: [],
