@@ -4,7 +4,7 @@ import * as d3 from 'd3';
 @Component({
   selector: 'app-donut',
   templateUrl: './donut.component.html',
-  styleUrls: ['./donut.component.sass']
+  styleUrls: ['./donut.component.scss']
 })
 export class DonutComponent implements OnInit {
 
