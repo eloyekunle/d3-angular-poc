@@ -4,6 +4,7 @@ import Chart from '../../../charts';
 
 interface ChartData {
   value: number;
+  color: string;
 }
 
 @Component({
@@ -18,9 +19,25 @@ export class ChartComponent implements OnInit {
 
   constructor() { }
 
-  initPieChart(svg: Selection<any, any, any, any>, data: ChartData[]) {
-    const chart = Chart.models.pieChart();
+  initPieChart(svg: Selection<any, any, any, any>, data: ChartData[], ratio: number, margin: number) {
     const size = this.size || 280;
+
+    const chart = Chart.models.pieChart()
+      .showLegend(false)
+      .showLabels(true)
+      .x((d) => {
+        return d.value;
+      })
+      .y((d) => {
+        return d.value;
+      })
+      .donut(true)
+      .donutRatio(ratio)
+      .color(data.map(x => x.color))
+      .margin({top: margin, right: margin, bottom: margin, left: margin})
+      .width(size)
+      .height(size)
+      .growOnHover(false);
 
     svg.attr('height', size)
       .attr('width', size)
@@ -33,7 +50,7 @@ export class ChartComponent implements OnInit {
 
   ngOnInit() {
     const svg = select(`#${this.id}`).append('svg');
-    const chart = this.initPieChart(svg, [{value: 10}, {value: 25}]);
+    const chart = this.initPieChart(svg, [{value: 10, color: '#fff'}, {value: 25, color: '#000'}], 0.67, 0);
   }
 
 }
