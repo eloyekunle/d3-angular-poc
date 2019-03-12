@@ -77,7 +77,7 @@ kdc.models.pieChart = function() {
 
 
 /*
-Utilities
+Shared Utilities
 =================
  */
 
