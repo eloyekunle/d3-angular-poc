@@ -36,8 +36,7 @@ export class ChartComponent implements OnInit {
       .color(data.map(x => x.color))
       .margin({top: margin, right: margin, bottom: margin, left: margin})
       .width(size)
-      .height(size)
-      .growOnHover(false);
+      .height(size);
 
     svg.attr('height', size)
       .attr('width', size)

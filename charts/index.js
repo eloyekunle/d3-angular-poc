@@ -17,10 +17,18 @@ kdc.models.pieChart = function() {
       getX = function(d) { return d.x },
       getY = function(d) { return d.y },
       donut = false,
-      color = kdc.utils.defaultColor();
+      color = kdc.utils.defaultColor(),
+      width = 500,
+      height = 500,
+      container = null;
 
   function chart(selection) {
-    console.log(selection);
+    selection.each(function(data) {
+      console.log(data);
+      container = d3.select(this);
+    })
+
+    return chart;
   }
 
   chart._options = Object.create({}, {
@@ -36,7 +44,9 @@ kdc.models.pieChart = function() {
         margin.bottom = typeof _.bottom != 'undefined' ? _.bottom : margin.bottom;
         margin.left   = typeof _.left   != 'undefined' ? _.left   : margin.left;
     }},
-    color: {get: function(){return color;}, set: function(_){color=kdc.utils.getColor(_);}},
+    color:      { get: function(){return color;}, set: function(_){color=kdc.utils.getColor(_);}},
+    width:      { get: function(){return width;}, set: function(_){width=_;}},
+    height:     { get: function(){return height;}, set: function(_){height=_;}},
   })
 
   kdc.utils.initOptions(chart);
