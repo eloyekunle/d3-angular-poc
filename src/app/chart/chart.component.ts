@@ -13,14 +13,12 @@ interface ChartData {
   styleUrls: ['./chart.component.scss']
 })
 export class ChartComponent implements OnInit {
-
   id = 'chart';
-  size = 300;
 
   constructor() { }
 
   initPieChart(svg: Selection<any, any, any, any>, data: ChartData[], ratio: number, margin: number) {
-    const size = this.size || 280;
+    const size = 300;
 
     const chart = Chart.models.pieChart()
       .showLegend(false)
@@ -45,11 +43,14 @@ export class ChartComponent implements OnInit {
       .transition()
       .duration(350)
       .call(chart);
+
+    return chart;
   }
 
   ngOnInit() {
     const svg = select(`#${this.id}`).append('svg');
-    const chart = this.initPieChart(svg, [{value: 10, color: '#fff'}, {value: 25, color: '#000'}], 0.67, 0);
+    this.initPieChart(svg, [{value: 10, color: '#a84dff'}, {value: 25, color: '#ff7517'}], 0.67, 0);
+    this.initPieChart(svg, [{value: 25, color: '#2c24ff'}, {value: 10, color: '#fff900'}], 0.55,  37);
   }
 
 }

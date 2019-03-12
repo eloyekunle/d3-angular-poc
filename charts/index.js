@@ -24,8 +24,30 @@ kdc.models.pieChart = function() {
 
   function chart(selection) {
     selection.each(function(data) {
-      console.log(data);
+      let availableWidth = width - margin.left - margin.right,
+          availableHeight = height - margin.top - margin.bottom,
+          radius = Math.min(availableWidth, availableHeight) / 2;
+
       container = d3.select(this);
+
+      const pie = d3.pie()
+          .value(function(d) { return d.value; })
+          .sort(null);
+
+      const arc = d3.arc()
+          .innerRadius(radius * donutRatio)
+          .outerRadius(radius - radius / 10);
+
+      const svg = d3.select('svg')
+          .append('g')
+          .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
+
+      let path = svg.datum(data).selectAll('path')
+          .data(pie)
+          .enter().append('path')
+          .attr('fill', function(d, i) { return color(i); })
+          .attr('d', arc)
+          .each(function(d) { this._current = d; }); // store the initial angles
     })
 
     return chart;
@@ -89,11 +111,7 @@ kdc.utils.getColor = function(color) {
       var key = i === undefined ? d : i;
       return d.color || color_scale(key);
     };
-
-    //if passed a function or scale, return it, or whatever it may be
-    //external libs, such as angularjs-nvd3-directives use this
   } else {
-    //can't really help it if someone passes rubbish as color
     return color;
   }
 };
