@@ -1,5 +1,6 @@
 const kdc = {};
 kdc.models = kdc.models || {};
+kdc.utils = kdc.utils || {};
 
 // Each chart type will move to their own file..
 kdc.models.pieChart = function() {
@@ -23,11 +24,11 @@ kdc.models.pieChart = function() {
     donut:      { get: function(){return donut;}, set: function(_){donut=_;}},
   })
 
-  initOptions(chart);
+  kdc.utils.initOptions(chart);
   return chart;
 }
 
-function initOption(chart, name) {
+kdc.utils.initOption = function(chart, name) {
   chart[name] = function(_) {
     if (!arguments.length) return chart._options[name];
     chart._options[name] = _;
@@ -35,10 +36,10 @@ function initOption(chart, name) {
   }
 }
 
-function initOptions(chart) {
+kdc.utils.initOptions = function(chart) {
   var ops = Object.getOwnPropertyNames(chart._options || {});
   for (var i in ops) {
-    initOption(chart, ops[i]);
+    kdc.utils.initOption(chart, ops[i]);
   }
 }
 
