@@ -93,8 +93,8 @@ kdc.utils.initOption = function(chart, name) {
 }
 
 kdc.utils.initOptions = function(chart) {
-  var ops = Object.getOwnPropertyNames(chart._options || {});
-  for (var i in ops) {
+  let ops = Object.getOwnPropertyNames(chart._options || {});
+  for (let i in ops) {
     kdc.utils.initOption(chart, ops[i]);
   }
 }
@@ -106,9 +106,9 @@ kdc.utils.getColor = function(color) {
 
     //if passed an array, turn it into a color scale
   } else if(Array.isArray(color)) {
-    var color_scale = d3.scaleOrdinal().range(color);
+    let color_scale = d3.scaleOrdinal().range(color);
     return function(d, i) {
-      var key = i === undefined ? d : i;
+      let key = i === undefined ? d : i;
       return d.color || color_scale(key);
     };
   } else {
