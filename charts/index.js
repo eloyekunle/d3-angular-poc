@@ -14,13 +14,13 @@ kdc.models.pieChart = function() {
       showLegend = false,
       showLabels = true,
       donutRatio = 0.5,
-      getX = function(d) { return d.x },
-      getY = function(d) { return d.y },
       donut = false,
       color = kdc.utils.defaultColor(),
       width = 500,
       height = 500,
-      container = null;
+      container = null,
+      getX = function(d) { return d.x },
+      getY = function(d) { return d.y };
 
   function chart(selection) {
     selection.each(function(data) {
@@ -42,7 +42,7 @@ kdc.models.pieChart = function() {
           .append('g')
           .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
 
-      let path = svg.datum(data).selectAll('path')
+      svg.datum(data).selectAll('path')
           .data(pie)
           .enter().append('path')
           .attr('fill', function(d, i) { return color(i); })
